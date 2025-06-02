@@ -1,1 +1,2 @@
-run with `uv run fastapi dev`
+run local with `uv run fastapi dev`
+run prod with `uv run fastapi run`

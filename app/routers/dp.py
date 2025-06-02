@@ -4,7 +4,7 @@ router = APIRouter()
 
 
 @router.post("/LCS")
-def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+def longestCommonSubsequence(text1: str, text2: str) -> int:
     """
     intuition:
 
