@@ -11,3 +11,6 @@ wheels/
 
 settings.json
 .python-version
+cdk.out
+lambda/
+requirements.txt
