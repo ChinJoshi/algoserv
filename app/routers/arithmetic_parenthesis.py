@@ -3,8 +3,8 @@ from fastapi import APIRouter
 router = APIRouter()
 
 
-@router.post("/arithmetic-paranthesis")
-def arithmetic_paranthesis(operators: list[str], nums: list[int]):
+@router.post("/arithmetic-parenthesis")
+def arithmetic_parenthesis(operators: list[str], nums: list[int]):
     """
     intuition:
 
