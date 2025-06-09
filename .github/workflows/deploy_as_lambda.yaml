@@ -19,10 +19,8 @@ jobs:
             - name: install uv
               run: curl -LsSf https://astral.sh/uv/install.sh | sh
 
-            - name: installl python 3.13
-              uses: actions/setup-python@v5
-              with:
-                  python-version: "3.13"
+            - name: install python 3.13
+              run: uv python install 3.13
 
             - name: generate the requirements.txt from uv.lock
               run: uv export --frozen --no-dev --no-editable -o requirements.txt
