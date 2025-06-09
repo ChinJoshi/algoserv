@@ -3,7 +3,7 @@ from collections import deque
 
 router = APIRouter()
 
-@router.post("/daily-temperatures")
+@router.post("/daily-temperatures", summary="Daily Temperatures", description="Time Complexity: O(n). Space Complexity: O(n). \n\nUses a monotonic stack to find the number of days until a warmer temperature for each day.")
 def dailyTemperatures(temperatures: list[int]) -> list[int]:
     """
     intuition:

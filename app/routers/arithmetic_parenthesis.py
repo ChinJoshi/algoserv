@@ -3,7 +3,7 @@ from fastapi import APIRouter
 router = APIRouter()
 
 
-@router.post("/arithmetic-parenthesis")
+@router.post("/arithmetic-parenthesis", summary="Arithmetic Parenthesis Optimization", description="Time Complexity: O(n³). Space Complexity: O(n²). \n\nFinds the optimal way to add parentheses to an arithmetic expression to maximize its value.")
 def arithmetic_parenthesis(operators: list[str], nums: list[int]):
     """
     intuition:

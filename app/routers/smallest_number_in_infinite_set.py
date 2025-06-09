@@ -72,7 +72,7 @@ example call would look like:
 function_calls: ["SmallestInfiniteSet", "addBack", "popSmallest", "popSmallest", "popSmallest", "addBack", "popSmallest", "popSmallest", "popSmallest"]
 operands: [[], [2], [], [], [], [1], [], [], []]
 """
-@router.post("/smallest-infinite-number-in-set")
+@router.post("/smallest-infinite-number-in-set", summary="Smallest Number in Infinite Set", description="Time Complexity: O(log n) per operation. Space Complexity: O(n). \n\nImplements a data structure that keeps track of the smallest number in an infinite set with add and pop operations.")
 def smallestIniniteSet(function_calls:list[str],operands:list[int]) -> list[int|None]:
     obj = None
     ret_val = []

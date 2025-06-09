@@ -3,7 +3,7 @@ from fastapi import APIRouter
 router = APIRouter()
 
 
-@router.post("/LCS")
+@router.post("/LCS", summary="Longest Common Subsequence", description="Time Complexity: O(m*n) where m and n are lengths of input strings. Space Complexity: O(m*n). \n\nUses dynamic programming to find the length of the longest common subsequence between two strings.")
 def longestCommonSubsequence(text1: str, text2: str) -> int:
     """
     intuition:

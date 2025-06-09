@@ -4,7 +4,7 @@ router = APIRouter()
 
 
 
-@router.post("/non-overlapping-intervals")
+@router.post("/non-overlapping-intervals", summary="Non-overlapping Intervals", description="Time Complexity: O(n log n). Space Complexity: O(1). \n\nFinds the minimum number of intervals to remove to make the remaining intervals non-overlapping.")
 def eraseOverlapIntervals(intervals: list[list[int]]) -> int:
         """
         intuition:

@@ -1,0 +1,38 @@
+name: CI/CD for production
+on:
+    push:
+        branches:
+            - main
+jobs:
+    CI-with-supabase-and-CD-with-vercel:
+        name: push config to supabase and deploy to vercel
+        runs-on: ubuntu-latest
+        environment: production
+        env:
+            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+        steps:
+            - name: Checkout repo to runner
+              uses: actions/checkout@v4
+
+            - name: install uv
+              run: curl -LsSf https://astral.sh/uv/install.sh | sh
+
+            - name: generate the requirements.txt from uv.lock
+              run: uv export --frozen --no-dev --no-editable -o requirements.txt
+
+            - name: download and compile deps into lambda folder
+              run: uv pip install --no-installer-metadata --no-compile-bytecode --python-platform x86_64-manylinux2014 --python 3.13 --target lambda -r requirements.txt
+
+            - name: copy app contents into lambda folder
+              run: cp -r app lambda
+
+            - name: Install aws cdk
+              run: npm install -g aws-cdk
+
+            - name: synth cloudformation template and diff to existing deploy
+              run: cdk diff
+
+            - name: Deploy new cfn template
+              run: cdk deploy

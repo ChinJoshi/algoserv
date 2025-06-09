@@ -2,7 +2,7 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.post("/container-with-most-water")
+@router.post("/container-with-most-water", summary="Container With Most Water", description="Time Complexity: O(n). Space Complexity: O(1). \n\nUses a two-pointer approach to find the container that can hold the most water.")
 def maxArea(height: list[int]) -> int:
     """
     intuition:
