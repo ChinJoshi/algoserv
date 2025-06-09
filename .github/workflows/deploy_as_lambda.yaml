@@ -4,8 +4,8 @@ on:
         branches:
             - main
 jobs:
-    CI-with-supabase-and-CD-with-vercel:
-        name: push config to supabase and deploy to vercel
+    Deploy-app-to-lambda:
+        name: Deploy app to lambdas
         runs-on: ubuntu-latest
         environment: production
         env:
@@ -18,6 +18,9 @@ jobs:
 
             - name: install uv
               run: curl -LsSf https://astral.sh/uv/install.sh | sh
+
+            - name: find python versions
+              run: uv python find
 
             - name: generate the requirements.txt from uv.lock
               run: uv export --frozen --no-dev --no-editable -o requirements.txt
