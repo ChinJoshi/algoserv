@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.routers import arithmetic_parenthesis, graph, string,intervals,monotonic_stack, dp, container_with_most_water, string_compression
+from app.routers import arithmetic_parenthesis, graph, string,intervals,monotonic_stack, dp, container_with_most_water, string_compression, max_vowels
 from mangum import Mangum
 from fastapi.responses import HTMLResponse
 
@@ -13,6 +13,7 @@ app.include_router(dp.router)
 app.include_router(arithmetic_parenthesis.router)
 app.include_router(container_with_most_water.router)
 app.include_router(string_compression.router)
+app.include_router(max_vowels.router)
 
 @app.get("/",include_in_schema=False)
 def landing_page():
