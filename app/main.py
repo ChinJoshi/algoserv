@@ -40,39 +40,38 @@ def landing_page():
       <span class="text-blue-600">— as an API</span>
     </h1>
     <p class="text-xl text-slate-700 max-w-2xl text-center mb-10">
-      The simplest way to access powerful algorithms—sorting, searching, graph, math, and more—directly from your code. No setup required, just API calls.
+      Solve algorithmic problems with optimized implementations—dynamic programming, graph traversal, string processing, and more—directly from your code. No setup required, just API calls.
     </p>
     <a href="#get-started" class="mb-16 bg-blue-600 text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:bg-blue-700 transition text-lg">Start Using for Free</a>
 
     <!-- Features -->
     <div class="grid md:grid-cols-3 gap-8 w-full max-w-5xl mb-20">
       <div class="bg-white p-8 rounded-2xl shadow hover:shadow-lg transition">
-        <h3 class="text-xl font-bold text-indigo-700 mb-2">Sorting & Searching</h3>
-        <p class="text-slate-600">API endpoints for quicksort, mergesort, binary search and more.</p>
+        <h3 class="text-xl font-bold text-indigo-700 mb-2">Dynamic Programming</h3>
+        <p class="text-slate-600">Longest common subsequence and other DP solutions optimized for performance.</p>
       </div>
       <div class="bg-white p-8 rounded-2xl shadow hover:shadow-lg transition">
-        <h3 class="text-xl font-bold text-indigo-700 mb-2">Graph Algorithms</h3>
-        <p class="text-slate-600">Solve shortest path, detect cycles, traversals, and network flows via API.</p>
+        <h3 class="text-xl font-bold text-indigo-700 mb-2">Graph & Array Problems</h3>
+        <p class="text-slate-600">BFS traversal, container with most water, pivot index, and interval processing.</p>
       </div>
       <div class="bg-white p-8 rounded-2xl shadow hover:shadow-lg transition">
-        <h3 class="text-xl font-bold text-indigo-700 mb-2">Math & Data Structures</h3>
-        <p class="text-slate-600">Prime checks, GCD/LCM, heap/stack/queue operations—just an HTTP request away.</p>
+        <h3 class="text-xl font-bold text-indigo-700 mb-2">String & Stack Operations</h3>
+        <p class="text-slate-600">Palindrome checks, max vowels, daily temperatures, and monotonic stack algorithms.</p>
       </div>
     </div>
 
     <!-- Example API usage -->
     <div class="w-full max-w-3xl bg-white rounded-2xl shadow p-8 mb-16">
-      <h2 class="text-2xl font-bold text-indigo-800 mb-4">Example: Sorting Numbers</h2>
+      <h2 class="text-2xl font-bold text-indigo-800 mb-4">Example: Container With Most Water</h2>
       <pre class="bg-slate-900 rounded-xl text-slate-100 p-4 text-sm overflow-x-auto"><code>
-POST https://api.algorithms.dev/sort
+POST /container-with-most-water
 {
-  "algorithm": "quicksort",
-  "data": [10, 7, 3, 12, 8]
+  "height": [1, 8, 6, 2, 5, 4, 8, 3, 7]
 }
 
 // Response:
 {
-  "result": [3, 7, 8, 10, 12]
+  "result": 49
 }
       </code></pre>
     </div>
