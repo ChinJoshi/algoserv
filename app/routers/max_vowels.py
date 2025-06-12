@@ -3,7 +3,7 @@ from fastapi import APIRouter
 router = APIRouter()
 
 
-@router.post("max-vowels",summary="max vowels",description="Time Complexity: O(n). Space Complexity: O(1). \n\nGiven some substring length k and lowercase string s, determines the number of vowels in the k-length substring of s which contains the most vowels")
+@router.post("/max-vowels",summary="Max Vowels",description="Time Complexity: O(n). Space Complexity: O(1). \n\nGiven some substring length k and lowercase string s, determines the number of vowels in the k-length substring of s which contains the most vowels")
 def maxVowels(s: str, k: int) -> int:
     """
     intuition:
