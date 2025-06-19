@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.routers import arithmetic_parenthesis, graph, string,intervals,monotonic_stack, dp, container_with_most_water, string_compression, max_vowels, pivot_index, close_strings, leaf_similar_trees, peak_element
+from app.routers import arithmetic_parenthesis, graph, string,intervals,monotonic_stack, dp, container_with_most_water, string_compression, max_vowels, pivot_index, close_strings, leaf_similar_trees, peak_element, good_nodes, reorder_routes
 from mangum import Mangum
 from fastapi.responses import HTMLResponse
 
@@ -18,6 +18,9 @@ app.include_router(pivot_index.router)
 app.include_router(close_strings.router)
 app.include_router(leaf_similar_trees.router)
 app.include_router(peak_element.router)
+app.include_router(good_nodes.router)
+app.include_router(reorder_routes.router)
+
 
 @app.get("/",include_in_schema=False)
 def landing_page():
@@ -45,7 +48,7 @@ def landing_page():
     <p class="text-xl text-slate-700 max-w-2xl text-center mb-10">
       Solve algorithmic problems with optimized implementations—dynamic programming, graph traversal, string processing, and more—directly from your code. No setup required, just API calls.
     </p>
-    <a href="#get-started" class="mb-16 bg-blue-600 text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:bg-blue-700 transition text-lg">Start Using for Free</a>
+    <a href="#get-started" class="mb-16 bg-blue-600 text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:bg-blue-700 transition text-lg">Start Using</a>
 
     <!-- Features -->
     <div class="grid md:grid-cols-3 gap-8 w-full max-w-5xl mb-20">
@@ -55,7 +58,7 @@ def landing_page():
       </div>
       <div class="bg-white p-8 rounded-2xl shadow hover:shadow-lg transition">
         <h3 class="text-xl font-bold text-indigo-700 mb-2">Graph & Array Problems</h3>
-        <p class="text-slate-600">BFS traversal, container with most water, pivot index, and interval processing.</p>
+        <p class="text-slate-600">BFS traversal, pivot index, peak element finding, and interval processing.</p>
       </div>
       <div class="bg-white p-8 rounded-2xl shadow hover:shadow-lg transition">
         <h3 class="text-xl font-bold text-indigo-700 mb-2">String & Stack Operations</h3>
@@ -65,16 +68,17 @@ def landing_page():
 
     <!-- Example API usage -->
     <div class="w-full max-w-3xl bg-white rounded-2xl shadow p-8 mb-16">
-      <h2 class="text-2xl font-bold text-indigo-800 mb-4">Example: Container With Most Water</h2>
+      <h2 class="text-2xl font-bold text-indigo-800 mb-4">Example: Longest Common Subsequence</h2>
       <pre class="bg-slate-900 rounded-xl text-slate-100 p-4 text-sm overflow-x-auto"><code>
-POST /container-with-most-water
+POST /LCS
 {
-  "height": [1, 8, 6, 2, 5, 4, 8, 3, 7]
+  "text1": "abcde",
+  "text2": "ace"
 }
 
 // Response:
 {
-  "result": 49
+  "result": 3
 }
       </code></pre>
     </div>
