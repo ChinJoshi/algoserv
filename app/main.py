@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.routers import arithmetic_parenthesis, is_palindrome, intervals,monotonic_stack, dp, container_with_most_water, string_compression, max_vowels, pivot_index, close_strings, leaf_similar_trees, peak_element, good_nodes, reorder_routes, min_flips
+from app.routers import arithmetic_parenthesis, is_palindrome, intervals,monotonic_stack, dp, container_with_most_water, string_compression, max_vowels, pivot_index, close_strings, leaf_similar_trees, peak_element, good_nodes, reorder_routes, min_flips, unique_occurenes
 from mangum import Mangum
 from fastapi.responses import HTMLResponse
 
@@ -20,6 +20,7 @@ app.include_router(peak_element.router)
 app.include_router(good_nodes.router)
 app.include_router(reorder_routes.router)
 app.include_router(min_flips.router)
+app.include_router(unique_occurenes.router)
 
 
 @app.get("/",include_in_schema=False)
