@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.routers import arithmetic_parenthesis, is_palindrome, intervals,monotonic_stack, dp, container_with_most_water, string_compression, max_vowels, pivot_index, close_strings, leaf_similar_trees, peak_element, good_nodes, reorder_routes, min_flips, unique_occurenes
+from app.routers import arithmetic_parenthesis, is_palindrome, intervals,monotonic_stack, dp, container_with_most_water, string_compression, max_vowels, pivot_index, close_strings, leaf_similar_trees, peak_element, good_nodes, reorder_routes, min_flips, unique_occurenes, single_number
 from mangum import Mangum
 from fastapi.responses import HTMLResponse
 
@@ -21,6 +21,7 @@ app.include_router(good_nodes.router)
 app.include_router(reorder_routes.router)
 app.include_router(min_flips.router)
 app.include_router(unique_occurenes.router)
+app.include_router(single_number.router)
 
 
 @app.get("/",include_in_schema=False)
@@ -28,7 +29,7 @@ def landing_page():
     return HTMLResponse(content = """<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8">jkjhjk
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Algorithms API</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
