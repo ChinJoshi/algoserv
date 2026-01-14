@@ -1,7 +1,9 @@
-from fastapi import APIRouter
 from collections import deque
 
+from fastapi import APIRouter
+
 router = APIRouter()
+
 
 class TreeNode:
     def __init__(self, val: int, left=None, right=None):
@@ -9,18 +11,24 @@ class TreeNode:
         self.left = left
         self.right = right
 
+
 def array_to_tree(arr):
     def helper(i):
         if i >= len(arr) or arr[i] is None:
             return None
         node = TreeNode(arr[i])
-        node.left = helper(2*i + 1)
-        node.right = helper(2*i + 2)
+        node.left = helper(2 * i + 1)
+        node.right = helper(2 * i + 2)
         return node
-    
+
     return helper(0)
 
-@router.post("/good-nodes", summary="Count Good Nodes in Binary Tree", description="Time Complexity O(V). Space Complexity O(V). Given a binary tree root, a node X in the tree is named good if in the path from root to X there are no nodes with a value greater than X. Returns the number of good nodes in the binary tree. Binary tree should be input in array form.")
+
+@router.post(
+    "/good-nodes",
+    summary="Count Good Nodes in Binary Tree",
+    description="Time Complexity O(V). Space Complexity O(V). Given a binary tree root, a node X in the tree is named good if in the path from root to X there are no nodes with a value greater than X. Returns the number of good nodes in the binary tree. Binary tree should be input in array form.",
+)
 def goodNodes(root: list[int]) -> int:
     """
     intuition:
@@ -47,7 +55,7 @@ def goodNodes(root: list[int]) -> int:
             queue.append(node.right,max(node.value,value))
     """
     root_node = array_to_tree(root)
-    
+
     good = 0
     queue = deque([(root_node, -(10**4))])
     while len(queue) > 0:
