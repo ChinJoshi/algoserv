@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from mangum import Mangum
 
-from app.routers import (
+from my_app.routers import (
     arithmetic_parenthesis,
     close_strings,
     container_with_most_water,
