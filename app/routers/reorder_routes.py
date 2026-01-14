@@ -1,10 +1,14 @@
-from fastapi import APIRouter
 from collections import deque
 
+from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.post("/reorder-routes-to-make-all-paths-lead-to-the-city-zero", summary="Reorder Routes to Make All Paths Lead to the City Zero", description="""There are n cities numbered from 0 to n - 1 and n - 1 roads such that there is only one way to travel between two different cities (this network form a tree). Last year, The ministry of transport decided to orient the roads in one direction because they are too narrow.
+
+@router.post(
+    "/reorder-routes-to-make-all-paths-lead-to-the-city-zero",
+    summary="Reorder Routes to Make All Paths Lead to the City Zero",
+    description="""There are n cities numbered from 0 to n - 1 and n - 1 roads such that there is only one way to travel between two different cities (this network form a tree). Last year, The ministry of transport decided to orient the roads in one direction because they are too narrow.
 
 Roads are represented by connections where connections[i] = [ai, bi] represents a road from city ai to city bi.
 
@@ -12,11 +16,12 @@ This year, there will be a big event in the capital (city 0), and many people wa
 
 The task consists of reorienting some roads such that each city can visit the city 0. Returns the minimum number of edges changed.
 
-It's guaranteed that each city can reach city 0 after reorder.""")
+It's guaranteed that each city can reach city 0 after reorder.""",
+)
 def minReorder(n: int, connections: list[list[int]]) -> int:
     """
     intuition:
-    Okay, so instincitvely the way I view thiw problem is to say that we should view the cities as all in a line. 
+    Okay, so instincitvely the way I view thiw problem is to say that we should view the cities as all in a line.
     Somewhere across this line is the city 0.
     All cities to the left of 0 should have roads which point to the right and all cities to the right should have roads that point left.
 
@@ -38,7 +43,7 @@ def minReorder(n: int, connections: list[list[int]]) -> int:
     Space Complexity: O(n)
     """
     # O(n)
-    connections_set = set((connection[0],connection[1]) for connection in connections)
+    connections_set = set((connection[0], connection[1]) for connection in connections)
 
     # O(n)
     adjacency_list = {}
@@ -51,23 +56,17 @@ def minReorder(n: int, connections: list[list[int]]) -> int:
             adjacency_list[connection[1]] = set([connection[0]])
         else:
             adjacency_list[connection[1]].add(connection[0])
-    
 
     flip_count = 0
-    #O(n)
-    nodes = deque(zip(adjacency_list[0],(0 for x in range(len(adjacency_list[0])))))
+    # O(n)
+    nodes = deque(zip(adjacency_list[0], (0 for x in range(len(adjacency_list[0])))))
 
-    #O(n)
+    # O(n)
     while len(nodes) > 0:
-        node,prev_node = nodes.pop()
-        if (node,prev_node) not in connections_set:
+        node, prev_node = nodes.pop()
+        if (node, prev_node) not in connections_set:
             flip_count += 1
         adjacency_list[node].remove(prev_node)
         for new_node in adjacency_list[node]:
-            nodes.append((new_node,node))
+            nodes.append((new_node, node))
     return flip_count
-        
-
-
-
-        
