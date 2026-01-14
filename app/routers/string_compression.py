@@ -2,7 +2,12 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.post("/string-compression", summary="String Compression", description="Time Complexity: O(n). Space Complexity: O(1). \n\nCompresses a string by replacing consecutive repeated characters with the character followed by the count of repetitions.")
+
+@router.post(
+    "/string-compression",
+    summary="String Compression",
+    description="Time Complexity: O(n). Space Complexity: O(1). \n\nCompresses a string by replacing consecutive repeated characters with the character followed by the count of repetitions.",
+)
 def compress(chars: list[str]) -> int:
     """
     intuition:
@@ -38,8 +43,8 @@ def compress(chars: list[str]) -> int:
     chars[left] = chars[-1]
     if counter > 1:
         for char in str(counter):
-            chars[left+1] = char
+            chars[left + 1] = char
             left += 1
         # chars[left+1] = str(counter)
         # left += 1
-    return left+1
+    return left + 1
