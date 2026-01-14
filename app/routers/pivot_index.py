@@ -2,8 +2,13 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.post("/pivot-index", summary="Pivot Index", description="Time Complexity O(n). Space Complexity O(1). Given an array nums, calculates the leftmost pivot index. A pivot index is an index in the array where the sum of all points to the left of it and equal to the sum of all points to the right of it.")
-def pivotIndex( nums: list[int]) -> int:
+
+@router.post(
+    "/pivot-index",
+    summary="Pivot Index",
+    description="Time Complexity O(n). Space Complexity O(1). Given an array nums, calculates the leftmost pivot index. A pivot index is an index in the array where the sum of all points to the left of it and equal to the sum of all points to the right of it.",
+)
+def pivotIndex(nums: list[int]) -> int:
     """
     intuition:
     We can use a pointer and increment it along the array from left to right
@@ -19,12 +24,12 @@ def pivotIndex( nums: list[int]) -> int:
     if left_sum == right_sum:
         return 0
     pointer += 1
-    
+
     while pointer < len(nums):
-        left_sum += nums[pointer-1]
+        left_sum += nums[pointer - 1]
         right_sum -= nums[pointer]
         if left_sum == right_sum:
             return pointer
         pointer += 1
-    
+
     return -1
