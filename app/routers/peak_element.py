@@ -2,7 +2,12 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.post("/find-peak-element", summary="Find Peak Element", description="""Time complexity: O(logn). Space Complexity: O(1). A peak element is an element that is strictly greater than its neighbors. If the array contains multiple peaks, the index to any one of the peaks will be returned. \nYou may imagine that nums[-1] = nums[n] = -∞. In other words, an element is always considered to be strictly greater than a neighbor that is outside the array.""")
+
+@router.post(
+    "/find-peak-element",
+    summary="Find Peak Element",
+    description="""Time complexity: O(logn). Space Complexity: O(1). A peak element is an element that is strictly greater than its neighbors. If the array contains multiple peaks, the index to any one of the peaks will be returned. \nYou may imagine that nums[-1] = nums[n] = -∞. In other words, an element is always considered to be strictly greater than a neighbor that is outside the array.""",
+)
 def findPeakElement(nums: list[int]) -> int:
     """
     intuition:
@@ -27,12 +32,12 @@ def findPeakElement(nums: list[int]) -> int:
 
     """
     left = 0
-    right = len(nums)-1
+    right = len(nums) - 1
     while right != left:
-        middle = int((right-left)/2) + left
-        if nums[middle +1] > nums[middle]:
-            left = middle+1
-        elif nums[middle-1] > nums[middle]:
+        middle = int((right - left) / 2) + left
+        if nums[middle + 1] > nums[middle]:
+            left = middle + 1
+        elif nums[middle - 1] > nums[middle]:
             right = middle
         else:
             return middle
