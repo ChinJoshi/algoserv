@@ -13,3 +13,5 @@ settings.json
 cdk.out
 lambda/
 requirements.txt
+
+.DS_STORE
