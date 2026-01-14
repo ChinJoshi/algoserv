@@ -3,7 +3,11 @@ from fastapi import APIRouter
 router = APIRouter()
 
 
-@router.post("/arithmetic-parenthesis", summary="Arithmetic Parenthesis Optimization", description="Time Complexity: O(n³). Space Complexity: O(n²). \n\nFinds the optimal way to add parentheses to an arithmetic expression to maximize its value.")
+@router.post(
+    "/arithmetic-parenthesis",
+    summary="Arithmetic Parenthesis Optimization",
+    description="Time Complexity: O(n³). Space Complexity: O(n²). \n\nFinds the optimal way to add parentheses to an arithmetic expression to maximize its value.",
+)
 def arithmetic_parenthesis(operators: list[str], nums: list[int]):
     """
     intuition:
@@ -28,7 +32,7 @@ def arithmetic_parenthesis(operators: list[str], nums: list[int]):
 
     and then once we get to the substrings with three values, we have to start guessing what this middle operation might be. and each one of those "guesses" results in a unique tree, where each left subtree and each right subtree would be a problem we already solved since each of those subtrees is smaller than our current tree and we have solved all smaller subtrees once we get to that point.
 
-    so the relation there would be 
+    so the relation there would be
     MR(i,j) is the max value we can get by paranthesizing the substring [i:j]
     MR(i,j) = max{MR(i,k) a_k-1 MR(k,j) for all i<k<=j}
 
@@ -37,47 +41,46 @@ def arithmetic_parenthesis(operators: list[str], nums: list[int]):
     operators=["+","x","+"],nums=[7,4,3,5]
 
     """
-    MR = [[-1 for _ in range(len(nums)+1)] for _ in range(len(nums))]
+    MR = [[-1 for _ in range(len(nums) + 1)] for _ in range(len(nums))]
 
     for x in MR:
-        print (x)
+        print(x)
     print("----")
-    #base cases
+    # base cases
     # length 1
     for i in range(len(nums)):
-        MR[i][i+1] = nums[i]
+        MR[i][i + 1] = nums[i]
     # length 2
     for i in range(len(operators)):
         if operators[i] == "+":
-            MR[i][i+2] = nums[i] + nums[i+1]
+            MR[i][i + 2] = nums[i] + nums[i + 1]
         elif operators[i] == "x":
-            MR[i][i+2] = nums[i] * nums[i+1]
-    
-    for x in MR:
-        print (x)
-    print("----")
+            MR[i][i + 2] = nums[i] * nums[i + 1]
 
+    for x in MR:
+        print(x)
+    print("----")
 
     l = 3
     while l <= len(nums):
-        print(f'l: {l}')
+        print(f"l: {l}")
         i = 0
-        while i+l <= len(nums):
-            print(f'i: {i}')
+        while i + l <= len(nums):
+            print(f"i: {i}")
             max_value = -1
-            k = i+1
-            while k < i+l:
-                print(f'k: {k}')
-                if operators[k-1] == "+":
-                    value = MR[i][k] + MR[k][i+l]
+            k = i + 1
+            while k < i + l:
+                print(f"k: {k}")
+                if operators[k - 1] == "+":
+                    value = MR[i][k] + MR[k][i + l]
                     if value > max_value:
                         max_value = value
-                elif operators[k-1] == "x":
-                    value = MR[i][k] * MR[k][i+l]
+                elif operators[k - 1] == "x":
+                    value = MR[i][k] * MR[k][i + l]
                     if value > max_value:
                         max_value = value
-                k+=1
-            MR[i][i+l] = max_value
+                k += 1
+            MR[i][i + l] = max_value
             i += 1
-        l+=1
+        l += 1
     return MR[0][len(nums)]
