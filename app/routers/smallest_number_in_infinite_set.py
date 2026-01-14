@@ -1,7 +1,9 @@
-from fastapi import APIRouter
 import heapq
 
-router = APIRouter()    
+from fastapi import APIRouter
+
+router = APIRouter()
+
 
 class SmallestInfiniteSet:
     """
@@ -17,7 +19,7 @@ class SmallestInfiniteSet:
 
     for the set, we can use the set type
     for storing the smallest value in the set we can use a minheap
-    keep track of the smallest value in the set 
+    keep track of the smallest value in the set
     the set/heap will contain values in the set, and the above greatest value in the heap will be unborken infinite positive values
 
     heap build is O(n) time
@@ -38,10 +40,11 @@ class SmallestInfiniteSet:
 
 
     """
+
     def __init__(self):
         # starting size can be any positive integer technically
         starting_size = 1
-        self.infinite_min_heap = [x for x in range(1,starting_size + 1)]
+        self.infinite_min_heap = [x for x in range(1, starting_size + 1)]
         heapq.heapify(self.infinite_min_heap)
         self.infinite_set = set(self.infinite_min_heap)
         self.next_value = starting_size + 1
@@ -51,14 +54,14 @@ class SmallestInfiniteSet:
         self.infinite_set.remove(min_val)
         if len(self.infinite_set) == 0:
             self.infinite_set.add(self.next_value)
-            heapq.heappush(self.infinite_min_heap,self.next_value)
-            self.next_value+=1
+            heapq.heappush(self.infinite_min_heap, self.next_value)
+            self.next_value += 1
         return min_val
 
     def addBack(self, num: int) -> None:
         if num not in self.infinite_set and num < self.next_value:
             self.infinite_set.add(num)
-            heapq.heappush(self.infinite_min_heap,num)
+            heapq.heappush(self.infinite_min_heap, num)
 
 
 # Your SmallestInfiniteSet object will be instantiated and called as such:
@@ -72,11 +75,19 @@ example call would look like:
 function_calls: ["SmallestInfiniteSet", "addBack", "popSmallest", "popSmallest", "popSmallest", "addBack", "popSmallest", "popSmallest", "popSmallest"]
 operands: [[], [2], [], [], [], [1], [], [], []]
 """
-@router.post("/smallest-infinite-number-in-set", summary="Smallest Number in Infinite Set", description="Time Complexity: O(log n) per operation. Space Complexity: O(n). \n\nImplements a data structure that keeps track of the smallest number in an infinite set with add and pop operations.")
-def smallestIniniteSet(function_calls:list[str],operands:list[int]) -> list[int|None]:
+
+
+@router.post(
+    "/smallest-infinite-number-in-set",
+    summary="Smallest Number in Infinite Set",
+    description="Time Complexity: O(log n) per operation. Space Complexity: O(n). \n\nImplements a data structure that keeps track of the smallest number in an infinite set with add and pop operations.",
+)
+def smallestIniniteSet(
+    function_calls: list[str], operands: list[int]
+) -> list[int | None]:
     obj = None
     ret_val = []
-    for index,function_call in enumerate(function_calls):
+    for index, function_call in enumerate(function_calls):
         if function_call == "SmallestInfiniteSet":
             obj = SmallestInfiniteSet()
         if function_call == "popSmallest":
