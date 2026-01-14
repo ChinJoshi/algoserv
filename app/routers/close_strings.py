@@ -2,14 +2,19 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.post("/close-strings", summary="Close strings", description="""Time Complexity O(n). Space Complexity O(n). Two strings are considered close if you can attain one from the other using the following operations:
+
+@router.post(
+    "/close-strings",
+    summary="Close strings",
+    description="""Time Complexity O(n). Space Complexity O(n). Two strings are considered close if you can attain one from the other using the following operations:
 
     Operation 1: Swap any two existing characters.
         For example, abcde -> aecdb
     Operation 2: Transform every occurrence of one existing character into another existing character, and do the same with the other character.
         For example, aacabb -> bbcbaa (all a's turn into b's, and all b's turn into a's)
 
-You can use the operations on either string as many times as necessary.""")
+You can use the operations on either string as many times as necessary.""",
+)
 def closeStrings(self, word1: str, word2: str) -> bool:
     """
     intuition:
@@ -38,15 +43,15 @@ def closeStrings(self, word1: str, word2: str) -> bool:
     # O(n)
     for char in word1:
         if char in word1_dict:
-            word1_dict[char]+=1
+            word1_dict[char] += 1
         else:
-            word1_dict[char]=1
+            word1_dict[char] = 1
     # O(n)
     for char in word2:
         if char in word2_dict:
-            word2_dict[char]+=1
+            word2_dict[char] += 1
         else:
-            word2_dict[char]=1
+            word2_dict[char] = 1
 
     # O(n)
     if set(word1_dict.keys()) != set(word2_dict.keys()):
@@ -56,18 +61,17 @@ def closeStrings(self, word1: str, word2: str) -> bool:
     word2_multiset = {}
     for key in word2_dict.keys():
         if word2_dict[key] in word2_multiset:
-            word2_multiset[word2_dict[key]] +=1
+            word2_multiset[word2_dict[key]] += 1
         else:
-            word2_multiset[word2_dict[key]]=1
-    
+            word2_multiset[word2_dict[key]] = 1
+
     # O(n)
     for word1_unique_char in word1_dict.keys():
         if word1_dict[word1_unique_char] not in word2_multiset:
             return False
         else:
-            word2_multiset[word1_dict[word1_unique_char]] -=1
+            word2_multiset[word1_dict[word1_unique_char]] -= 1
             if word2_multiset[word1_dict[word1_unique_char]] == 0:
                 word2_multiset.pop(word1_dict[word1_unique_char])
-    
 
     return True
