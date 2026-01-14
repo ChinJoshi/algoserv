@@ -1,9 +1,15 @@
-from fastapi import APIRouter
 from collections import deque
+
+from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.post("/daily-temperatures", summary="Daily Temperatures", description="Time Complexity: O(n). Space Complexity: O(n). \n\nUses a monotonic stack to find the number of days until a warmer temperature for each day.")
+
+@router.post(
+    "/daily-temperatures",
+    summary="Daily Temperatures",
+    description="Time Complexity: O(n). Space Complexity: O(n). \n\nUses a monotonic stack to find the number of days until a warmer temperature for each day.",
+)
 def dailyTemperatures(temperatures: list[int]) -> list[int]:
     """
     intuition:
@@ -30,5 +36,5 @@ def dailyTemperatures(temperatures: list[int]) -> list[int]:
         while len(stack) >= 1 and temperature > stack[-1][0]:
             output[stack[-1][1]] = index - stack[-1][1]
             stack.pop()
-        stack.append([temperature,index])
+        stack.append([temperature, index])
     return output
