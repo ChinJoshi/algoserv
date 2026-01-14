@@ -1,7 +1,26 @@
 from fastapi import FastAPI
-from app.routers import arithmetic_parenthesis, is_palindrome, intervals,monotonic_stack, dp, container_with_most_water, string_compression, max_vowels, pivot_index, close_strings, leaf_similar_trees, peak_element, good_nodes, reorder_routes, min_flips, unique_occurenes, single_number
-from mangum import Mangum
 from fastapi.responses import HTMLResponse
+from mangum import Mangum
+
+from app.routers import (
+    arithmetic_parenthesis,
+    close_strings,
+    container_with_most_water,
+    dp,
+    good_nodes,
+    intervals,
+    is_palindrome,
+    leaf_similar_trees,
+    max_vowels,
+    min_flips,
+    monotonic_stack,
+    peak_element,
+    pivot_index,
+    reorder_routes,
+    single_number,
+    string_compression,
+    unique_occurenes,
+)
 
 app = FastAPI()
 
@@ -24,9 +43,10 @@ app.include_router(unique_occurenes.router)
 app.include_router(single_number.router)
 
 
-@app.get("/",include_in_schema=False)
+@app.get("/", include_in_schema=False)
 def landing_page():
-    return HTMLResponse(content = """<!DOCTYPE html>
+    return HTMLResponse(
+        content="""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -99,6 +119,8 @@ POST /LCS
   </footer>
 </body>
 </html>
-""")
+"""
+    )
+
 
 handler = Mangum(app)
