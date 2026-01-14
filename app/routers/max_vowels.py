@@ -3,7 +3,11 @@ from fastapi import APIRouter
 router = APIRouter()
 
 
-@router.post("/max-vowels",summary="Max Vowels",description="Time Complexity: O(n). Space Complexity: O(1). \n\nGiven some substring length k and lowercase string s, determines the number of vowels in the k-length substring of s which contains the most vowels")
+@router.post(
+    "/max-vowels",
+    summary="Max Vowels",
+    description="Time Complexity: O(n). Space Complexity: O(1). \n\nGiven some substring length k and lowercase string s, determines the number of vowels in the k-length substring of s which contains the most vowels",
+)
 def maxVowels(s: str, k: int) -> int:
     """
     intuition:
@@ -16,10 +20,10 @@ def maxVowels(s: str, k: int) -> int:
     check the right pointer to see if the value being included is now a vowel, if so add to the vowel count
     """
     # vowel set
-    vowel_set = set(['a','e','i','o','u'])
+    vowel_set = set(["a", "e", "i", "o", "u"])
     # iterate over the first window
     left = 0
-    right = k-1
+    right = k - 1
     vowel_count = 0
 
     for char in s[:k]:
@@ -27,13 +31,12 @@ def maxVowels(s: str, k: int) -> int:
             vowel_count += 1
     max_vowel_count = vowel_count
 
-    while right < len(s)-1:
+    while right < len(s) - 1:
         if s[left] in vowel_set:
-            vowel_count-=1
-        left+= 1
+            vowel_count -= 1
+        left += 1
         right += 1
         if s[right] in vowel_set:
             vowel_count += 1
-        max_vowel_count = max(max_vowel_count,vowel_count)
+        max_vowel_count = max(max_vowel_count, vowel_count)
     return max_vowel_count
-
