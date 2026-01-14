@@ -3,7 +3,11 @@ from fastapi import APIRouter
 router = APIRouter()
 
 
-@router.post("/LCS", summary="Longest Common Subsequence", description="Time Complexity: O(m*n) where m and n are lengths of input strings. Space Complexity: O(m*n). \n\nUses dynamic programming to find the length of the longest common subsequence between two strings.")
+@router.post(
+    "/LCS",
+    summary="Longest Common Subsequence",
+    description="Time Complexity: O(m*n) where m and n are lengths of input strings. Space Complexity: O(m*n). \n\nUses dynamic programming to find the length of the longest common subsequence between two strings.",
+)
 def longestCommonSubsequence(text1: str, text2: str) -> int:
     """
     intuition:
@@ -28,18 +32,18 @@ def longestCommonSubsequence(text1: str, text2: str) -> int:
 
     LCS of text1 and text2 would be LCS[0][0]
     """
-    LCS = [[None for x in range(len(text2)+1)] for x in range(len(text1)+1)]
+    LCS = [[None for x in range(len(text2) + 1)] for x in range(len(text1) + 1)]
     # set base case for i==len(text1) -> 0
-    for i in range(len(text2)+1):
+    for i in range(len(text2) + 1):
         LCS[-1][i] = 0
     # set base case for j==len(text2) -> 0
-    for i in range(len(text1)+1):
+    for i in range(len(text1) + 1):
         LCS[i][-1] = 0
-    
-    for i in range(len(text1)-1,-1,-1):
-        for j in range(len(text2)-1,-1,-1):
-            if text1[i]==text2[j]:
-                LCS[i][j] = LCS[i+1][j+1] + 1
+
+    for i in range(len(text1) - 1, -1, -1):
+        for j in range(len(text2) - 1, -1, -1):
+            if text1[i] == text2[j]:
+                LCS[i][j] = LCS[i + 1][j + 1] + 1
             else:
-                LCS[i][j] = max(LCS[i+1][j], LCS[i][j+1])
+                LCS[i][j] = max(LCS[i + 1][j], LCS[i][j + 1])
     return LCS[0][0]
