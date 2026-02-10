@@ -42,7 +42,6 @@ app.include_router(min_flips.router)
 app.include_router(unique_occurenes.router)
 app.include_router(single_number.router)
 
-# new comment
 
 
 @app.get("/", include_in_schema=False)
