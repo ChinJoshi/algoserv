@@ -68,7 +68,7 @@ def landing_page():
   <main class="container mx-auto px-4 py-16 flex flex-col items-center">
     <h1 class="text-5xl md:text-6xl font-extrabold text-center text-indigo-800 mb-6 drop-shadow-sm">
       Fast, Reliable Algorithms<br>
-      <span class="text-blue-600">— as an API</span>
+      <span class="text-blue-600">—asdfas as an API</span>
     </h1>
     <p class="text-xl text-slate-700 max-w-2xl text-center mb-10">
       Solve algorithmic problems with optimized implementations—dynamic programming, graph traversal, string processing, and more—directly from your code. No setup required, just API calls.
