@@ -60,7 +60,7 @@ def landing_page():
 <body class="bg-gradient-to-br from-indigo-50 to-blue-100 min-h-screen">
   <header class="w-full py-6 bg-white shadow-sm">
     <div class="container mx-auto flex justify-between items-center px-4">
-      <span class="text-2xl font-bold text-indigo-700 tracking-tight">asd</span>
+      <span class="text-2xl font-bold text-indigo-700 tracking-tight">kqerjqre</span>
       <a href="#get-started" class="bg-indigo-600 text-white rounded-xl px-5 py-2 hover:bg-indigo-700 transition">Get Started</a>
     </div>
   </header>
