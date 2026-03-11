@@ -1,3 +1,4 @@
+import httpx
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from mangum import Mangum
@@ -43,11 +44,13 @@ app.include_router(unique_occurenes.router)
 app.include_router(single_number.router)
 
 
-# what the dog doin
-
-
 @app.get("/", include_in_schema=False)
 def landing_page():
+    # ping google and return failure page if it fails, otherwise return the landing page
+    r = httpx.get("https://www.google.com")
+    if r.status_code != 200:
+        return HTMLResponse(content="<h1>Failure to reach Google</h1>", status_code=500)
+
     return HTMLResponse(
         content="""<!DOCTYPE html>
 <html lang="en">
@@ -60,7 +63,7 @@ def landing_page():
 <body class="bg-gradient-to-br from-indigo-50 to-blue-100 min-h-screen">
   <header class="w-full py-6 bg-white shadow-sm">
     <div class="container mx-auto flex justify-between items-center px-4">
-      <span class="text-2xl font-bold text-indigo-700 tracking-tight">alskdjhflaksdjhflkasdjh</span>
+      <span class="text-2xl font-bold text-indigo-700 tracking-tight">Algorithms API</span>
       <a href="#get-started" class="bg-indigo-600 text-white rounded-xl px-5 py-2 hover:bg-indigo-700 transition">Get Started</a>
     </div>
   </header>
@@ -68,7 +71,7 @@ def landing_page():
   <main class="container mx-auto px-4 py-16 flex flex-col items-center">
     <h1 class="text-5xl md:text-6xl font-extrabold text-center text-indigo-800 mb-6 drop-shadow-sm">
       Fast, Reliable Algorithms<br>
-      <span class="text-blue-600">—asdfas as an API</span>
+      <span class="text-blue-600">Algorithms as an API</span>
     </h1>
     <p class="text-xl text-slate-700 max-w-2xl text-center mb-10">
       Solve algorithmic problems with optimized implementations—dynamic programming, graph traversal, string processing, and more—directly from your code. No setup required, just API calls.
