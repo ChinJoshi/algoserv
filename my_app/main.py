@@ -49,7 +49,9 @@ def landing_page():
     # ping google and return failure page if it fails, otherwise return the landing page
     r = httpx.get("https://www.google.com")
     if r.status_code != 200:
-        return HTMLResponse(content="<h1>Failure to reach Google</h1>", status_code=500)
+        return HTMLResponse(
+            content="<h1>Failure to reach Google. bruh.</h1>", status_code=500
+        )
 
     return HTMLResponse(
         content="""<!DOCTYPE html>
