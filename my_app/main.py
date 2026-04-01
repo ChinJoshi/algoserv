@@ -47,7 +47,7 @@ app.include_router(single_number.router)
 @app.get("/", include_in_schema=False)
 def landing_page():
     print("Received request for landing page.")
-    # ping example.com and return failure page if it fails, otherwise return the landing page
+    # ping example.com and return failure page if it fails, otherwise return the landing page, hi
     # r = httpx.get("https://www.example.com")
     # if r.status_code != 200:
     #     return HTMLResponse(
