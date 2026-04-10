@@ -53,10 +53,7 @@ def landing_page():
     #     return HTMLResponse(
     #         content="<h1>Failure to reach Example.com. Bruh.</h1>", status_code=500
     #     )
-    # zdf
-    # heres a change
-    # lskdjfaj
-    # adfasfkjhasdfasdfasadsfas
+    # extra
 
     return HTMLResponse(
         content="""<!DOCTYPE html>
