@@ -46,7 +46,7 @@ app.include_router(single_number.router)
 
 @app.get("/", include_in_schema=False)
 def landing_page():
-    print("Received request for landing page. This is a demo.")
+    print("Received request for landing page.")
     # r = httpx.get("https://www.example.com")
     # if r.status_code != 200:
     #     return HTMLResponse(
