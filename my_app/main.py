@@ -46,14 +46,12 @@ app.include_router(single_number.router)
 
 @app.get("/", include_in_schema=False)
 def landing_page():
-    print("Received request for landing page.")
-    # ping example.com and return failure page if it fails, otherwise return the landing page
+    print("Received request for landing page. This is a demo.")
     # r = httpx.get("https://www.example.com")
     # if r.status_code != 200:
     #     return HTMLResponse(
-    #         content="<h1>Failure to reach Example.com. Bruh.</h1>", status_code=500
+    #         content="<h1>Failure to reach Example.com.</h1>", status_code=500
     #     )
-    # extra
 
     return HTMLResponse(
         content="""<!DOCTYPE html>
@@ -61,13 +59,13 @@ def landing_page():
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thomas's API</title>
+  <title>Algorithm API</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body class="bg-gradient-to-br from-indigo-50 to-blue-100 min-h-screen">
   <header class="w-full py-6 bg-white shadow-sm">
     <div class="container mx-auto flex justify-between items-center px-4">
-      <span class="text-2xl font-bold text-indigo-700 tracking-tight">Thomas's API</span>
+      <span class="text-2xl font-bold text-indigo-700 tracking-tight">Algorithm API</span>
       <a href="#get-started" class="bg-indigo-600 text-white rounded-xl px-5 py-2 hover:bg-indigo-700 transition">Get Started</a>
     </div>
   </header>
