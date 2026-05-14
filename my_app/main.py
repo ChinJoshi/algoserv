@@ -46,13 +46,6 @@ app.include_router(single_number.router)
 
 @app.get("/", include_in_schema=False)
 def landing_page():
-    print("Received request for landing page.")
-    # r = httpx.get("https://www.example.com")
-    # if r.status_code != 200:
-    #     return HTMLResponse(
-    #         content="<h1>Failure to reach Example.com.</h1>", status_code=500
-    #     )
-    # an edit for apar
 
     return HTMLResponse(
         content="""<!DOCTYPE html>
