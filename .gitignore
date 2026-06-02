@@ -15,3 +15,5 @@ lambda/
 requirements.txt
 
 .DS_STORE
+
+neon_*
