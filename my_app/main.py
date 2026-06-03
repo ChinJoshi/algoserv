@@ -46,7 +46,6 @@ app.include_router(single_number.router)
 
 @app.get("/", include_in_schema=False)
 def landing_page():
-    # a code change another code change
     return HTMLResponse(
         content="""<!DOCTYPE html>
 <html lang="en">
