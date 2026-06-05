@@ -1,4 +1,7 @@
+import os
+
 import httpx
+import psycopg
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from mangum import Mangum
@@ -43,9 +46,18 @@ app.include_router(min_flips.router)
 app.include_router(unique_occurenes.router)
 app.include_router(single_number.router)
 
+DB_CONNECTION_STRING = os.getenv("DB_CONNECTION_STRING")
+
 
 @app.get("/", include_in_schema=False)
 def landing_page():
+    if DB_CONNECTION_STRING is not None:
+        with psycopg.connect(DB_CONNECTION_STRING) as conn:
+            with conn.cursor() as cur:
+                # Query the database and obtain data as Python objects.
+                cur.execute("SELECT * FROM example")
+                print(cur.fetchone())
+
     return HTMLResponse(
         content="""<!DOCTYPE html>
 <html lang="en">
