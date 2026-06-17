@@ -18,3 +18,7 @@ requirements.txt
 
 neon_prompt.md
 neon_*
+
+prompts/*
+
+ast_stuff/*
